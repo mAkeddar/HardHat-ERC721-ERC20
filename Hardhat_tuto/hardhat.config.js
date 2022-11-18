@@ -26,11 +26,11 @@ module.exports = {
   networks:{
     sepolia: {
       url : 'https://sepolia.infura.io/v3/c0d8d7ae9dda4cb0b223725958b4a9cd',
-      accounts : ['0xd713928606fbf0f9055b9b37e76e06355bcb53aa3904e1adb2c27a828bb7f5f3']
+      accounts : []
     },
     goerli:{
       url : 'https://goerli.infura.io/v3/c0d8d7ae9dda4cb0b223725958b4a9cd',
-      accounts :['0xd713928606fbf0f9055b9b37e76e06355bcb53aa3904e1adb2c27a828bb7f5f3']
+      accounts :[]
     }
   },
   etherscan:{
