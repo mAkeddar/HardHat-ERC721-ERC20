@@ -7,6 +7,8 @@ pragma solidity ^0.8.1;
  import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
  import "@openzeppelin/contracts/utils/Strings.sol";
 
+ import "./IXeu.sol";
+
 contract hardhatTuto is ERC721Enumerable{
     struct player{
         string pseudo;
@@ -18,6 +20,8 @@ contract hardhatTuto is ERC721Enumerable{
     mapping(uint256 => player) playerInfo;
     mapping(uint256 => address) playerOwner;
     mapping(address => uint256) countPlayerByOwner;
+
+    IXeu token;
     uint256 countPlayer = 1;
 
     function addPlayer(string memory _pseudo) public {
@@ -43,6 +47,22 @@ contract hardhatTuto is ERC721Enumerable{
         return playerOwner[_id];
     }
 
+    function setToken(address _token)public{
+        token = IXeu(_token);
+    }
+
+    function fight(uint _firstID, uint _secondID) public {
+        player memory first = getPlayer(_firstID);
+        player memory second = getPlayer(_secondID);
+
+        if(first.force>second.force){
+            token.wonCombat(getOwnerOf(_firstID));
+        }
+        else{
+            token.wonCombat(getOwnerOf(_secondID));
+        }
+    }
+
     /*function getPlayerbyOwner() returns() {}{
 
     }*/
@@ -66,7 +86,7 @@ contract hardhatTuto is ERC721Enumerable{
 
 
     constructor(string memory _pseudo, string memory _symbol) ERC721(_pseudo, _symbol){
-        //addPlayer('Mehdi');
+        addPlayer('Mehdi');
         addPlayer('Ghita');
     }
 

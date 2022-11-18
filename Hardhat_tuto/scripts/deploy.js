@@ -8,13 +8,20 @@ const hre = require("hardhat");
 
 async function main() {
 
+  const Token = await hre.ethers.getContractFactory("Xeu");
+  const tokenContrat = await Token.deploy();
+
+  console.log(
+    `token deployed to address ${contrat.address}`
+  );
+
   const Lock = await hre.ethers.getContractFactory("hardhatTuto");
   const contrat = await Lock.deploy('Binks','Sheeeesh');
 
   await contrat.deployed();
 
   console.log(
-    `Lock with 1 ETH and unlock timestamp ${contrat.address}`
+    `LNFT deployed to address ${contrat.address}`
   );
 
   /*await contrat.addPlayer('Mehdi');
@@ -22,6 +29,8 @@ async function main() {
 
   var player = await contrat.getPlayer(2);
   console.log(player);
+
+  await contrat.setToken(tokenContrat.address.toString());
 
 }
 
